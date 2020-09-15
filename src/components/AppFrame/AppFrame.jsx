@@ -9,4 +9,3 @@ const AppFrame = () => {
 }
 
 export default AppFrame
-AppFrame
