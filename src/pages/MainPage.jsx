@@ -1,10 +1,11 @@
 import React from 'react'
+import AppFrame from '../components/AppFrame'
 
 function MainPage() {
   return (
-    <div>
+    <AppFrame>
       MainPage
-    </div>
+    </AppFrame>
   )
 }
 

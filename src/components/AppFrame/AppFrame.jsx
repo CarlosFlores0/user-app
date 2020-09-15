@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   about: {
     marginRight: theme.spacing(4),
   },
+  appBar: {
+    padding: theme.spacing(2)
+  }
 }));
 
 const AppFrame = ({ children }) => {
@@ -19,12 +22,12 @@ const AppFrame = ({ children }) => {
   return (
     <Grid container
       justify="center">
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar variant="dense">
             <Link
               className={classes.about}
               component={LinkRouter}  
-              to="/main" 
+              to="/" 
               color="inherit" 
               aria-label="menu">
               <Typography variant="h6" color="inherit">

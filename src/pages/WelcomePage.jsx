@@ -1,10 +1,11 @@
 import React from 'react'
+import AppFrame from '../components/AppFrame'
 
 function WelcomePage() {
   return (
-    <div>
+    <AppFrame>
       WelcomePage
-    </div>
+    </AppFrame>
   )
 }
 
