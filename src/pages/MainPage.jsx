@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import AppFrame from './../components/AppFrame'
 import UserList from './../components/UserList'
+import Typography from '@material-ui/core/Typography'
 
 const users = [
   { id: 0, name: "Carlos Flores", email: "carlosfc.dev@gmail.com", address: { city: "Monterrey"}, phone: "52-8121757767", website: "carlosflores.com", company: {name:"Company"}},
@@ -18,7 +19,12 @@ function MainPage() {
   }
   return (
     <AppFrame>
-      <h2>Lista de usuarios</h2>
+      <Typography 
+          style={{marginTop: 20, marginBottom: 20}}
+          variant="h4" 
+          color="inherit">
+          Lista de usuarios
+        </Typography>
       <UserList 
         users={users}
         onClickUser={onClickHandler}/>

@@ -11,6 +11,14 @@ import Toolbar from '@material-ui/core/Toolbar'
 const useStyles = makeStyles((theme) => ({
   about: {
     marginRight: theme.spacing(4),
+    '&:hover': {
+      color: "#BAD6DB",
+   }
+  },
+  list: {
+    '&:hover': {
+      color: "#BAD6DB",
+   }
   },
   appBar: {
     padding: theme.spacing(2)
@@ -29,16 +37,19 @@ const AppFrame = ({ children }) => {
               component={LinkRouter}  
               to="/" 
               color="inherit" 
-              aria-label="menu">
+              aria-label="menu"
+              style={{ textDecoration: 'none' }}>
               <Typography variant="h6" color="inherit">
                 Acerca del proyecto
               </Typography>
             </Link>
             <Link
+              className={classes.list}
               component={LinkRouter}  
               to="/main" 
               color="inherit" 
-              aria-label="menu">
+              aria-label="menu"
+              style={{ textDecoration: 'none' }}>
               <Typography variant="h6" color="inherit">
                 Lista de usuarios
               </Typography>
