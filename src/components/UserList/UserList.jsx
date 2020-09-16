@@ -8,6 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { Grid } from '@material-ui/core';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -23,6 +24,7 @@ const StyledTableCell = withStyles((theme) => ({
 const useStyles = makeStyles({
   table: {
     maxWidth: 950,
+    justifyContent: "center"
   },
   cell: {
     cursor: "pointer"
@@ -51,26 +53,30 @@ const renderUser = eventOnClickUser => user => {
 const UserList = ({ users, onClickUser }) => {
   const classes = useStyles();
   return (
-    <TableContainer 
-      className={classes.table} 
-      component={Paper}>
-      <Table aria-label="customized table">
-        <TableHead>
-          <TableRow>
-            <StyledTableCell>id</StyledTableCell>
-            <StyledTableCell align="center">Nombre</StyledTableCell>
-            <StyledTableCell align="center">Email</StyledTableCell>
-            <StyledTableCell align="center">Ciudad</StyledTableCell>
-            <StyledTableCell align="center">Telefono</StyledTableCell>
-            <StyledTableCell align="center">Sitio web</StyledTableCell>
-            <StyledTableCell align="center">Compañia</StyledTableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {users.map((user) => renderUser(onClickUser)(user))}
-        </TableBody>
-      </Table>
-  </TableContainer>
+    <Grid container
+      justify="center">
+      <TableContainer 
+        className={classes.table} 
+        component={Paper}
+        elevation={3}>
+        <Table aria-label="customized table">
+          <TableHead>
+            <TableRow>
+              <StyledTableCell>id</StyledTableCell>
+              <StyledTableCell align="center">Nombre</StyledTableCell>
+              <StyledTableCell align="center">Email</StyledTableCell>
+              <StyledTableCell align="center">Ciudad</StyledTableCell>
+              <StyledTableCell align="center">Telefono</StyledTableCell>
+              <StyledTableCell align="center">Sitio web</StyledTableCell>
+              <StyledTableCell align="center">Compañia</StyledTableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {users.map((user) => renderUser(onClickUser)(user))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Grid>
   )
 }
 
