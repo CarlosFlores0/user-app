@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,6 +9,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Grid } from '@material-ui/core';
+
+const users = [
+  { id: 0, name: "Carlos Flores", email: "carlosfc.dev@gmail.com", address: { city: "Monterrey"}, phone: "52-8121757767", website: "carlosflores.com", company: {name:"Company"}},
+  { id: 1, name: "Jose Lopez", email: "Lopez.dev@gmail.com", address: { city: "Ciudad de México"}, phone: "52-8184220121", website: "jose-lopez.com", company: {name:"Company 2"}},
+  { id: 2, name: "Jorge Garza", email: "Jorge.pollo@gmail.com", address: { city: "Guadalajara"}, phone: "52-8150339204", website: "jorge-pollo.com", company: {name:"Company 3"}},
+  { id: 3, name: "Edith Garza", email: "EdyGarza@gmail.com", address: { city: "Monterrey"}, phone: "52-8199402931", website: "edy-garza.com", company: {name:"Company 4"}},  
+]
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -50,8 +57,15 @@ const renderUser = eventOnClickUser => user => {
   )
 }
 
-const UserList = ({ users, onClickUser }) => {
+const UserList = () => {
   const classes = useStyles();
+  const history = useHistory()
+  const onClickHandler = () => {
+    // history.push permite alterar la URL por programación
+    history.push("/user")
+  }
+
+
   return (
     <Grid container
       justify="center">
@@ -72,16 +86,12 @@ const UserList = ({ users, onClickUser }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {users.map((user) => renderUser(onClickUser)(user))}
+            {users.map((user) => renderUser(onClickHandler)(user))}
           </TableBody>
         </Table>
       </TableContainer>
     </Grid>
   )
-}
-
-UserList.propTypes = {
-  users: PropTypes.array.isRequired,
 }
 
 export default UserList
