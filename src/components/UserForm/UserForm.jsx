@@ -37,6 +37,7 @@ const UserForm = ({data}) => {
         justify="center">
         <Paper elevation={3} style={{width:"70%",padding:30}}>
         <form onSubmit={enviarDatos}>
+          <h3>Datos generales</h3>
           <div className="row pb-3">
             <div className="col-md-5 mr-5">
               <label>Nombre</label>
@@ -60,7 +61,7 @@ const UserForm = ({data}) => {
             </div>
           </div>
           <div className="row pb-3">
-            <div className="col-md-5">
+            <div className="col-md-5 mr-5">
               <label>Email</label>
               <input 
                 placeholder="Ingrese email"
@@ -70,9 +71,136 @@ const UserForm = ({data}) => {
                 value={datos.email}
                 onChange={handleInputChange}/>
             </div>
+            <div className="col-md-5">
+              <label>Telefono</label>
+              <input 
+                placeholder="Ingrese numero de telefono"
+                className="form-control"
+                type="text"
+                name="phone"
+                value={datos.phone}
+                onChange={handleInputChange}/>
+            </div>
           </div>
-          <div>
-            <button className="btn btn-primary" type="submit">Enviar</button>
+          <div className="row pb-3">
+            <div className="col-md-5 mr-5">
+              <label>Sitio web</label>
+              <input 
+                placeholder="Ingrese su website"
+                className="form-control"
+                type="text"
+                name="website"
+                value={datos.website}
+                onChange={handleInputChange}/>
+            </div>
+          </div>
+          <h3>Dirección</h3>
+          <div className="row pb-3">
+            <div className="col-md-5 mr-5">
+              <label>Ciudad</label>
+              <input 
+                placeholder="Ingrese Ciudad"
+                className="form-control"
+                type="text"
+                name="address.city"
+                value={datos.address.city}
+                onChange={handleInputChange}/>
+            </div>
+            <div className="col-md-5">
+              <label>Suite</label>
+              <input 
+                placeholder="Ingrese suite"
+                className="form-control"
+                type="text"
+                name="address.suite"
+                value={datos.address.suite}
+                onChange={handleInputChange}/>
+            </div>
+          </div>
+          <div className="row pb-3">
+            <div className="col-md-5 mr-5">
+              <label>Calle</label>
+              <input 
+                placeholder="Ingrese calle"
+                className="form-control"
+                type="text"
+                name="address.street"
+                value={datos.address.street}
+                onChange={handleInputChange}/>
+            </div>
+            <div className="col-md-5">
+              <label>Zipcode</label>
+              <input 
+                placeholder="Ingrese zipcode"
+                className="form-control"
+                type="text"
+                name="address.zipcode"
+                value={datos.address.zipcode}
+                onChange={handleInputChange}/>
+            </div>
+          </div>
+          <div className="col pb-3">
+            <h4>Geolocalización</h4>
+            <div className="col-md-5 pb-3">
+              <label>Latitud</label>
+              <input 
+                placeholder="Ingrese latitud"
+                className="form-control"
+                type="text"
+                name="address.geo.lat"
+                value={datos.address.geo.lat}
+                onChange={handleInputChange}/>
+            </div>
+            <div className="col-md-5">
+              <label>Longitud</label>
+              <input 
+                placeholder="Ingrese longitud"
+                className="form-control"
+                type="text"
+                name="address.geo.lng"
+                value={datos.address.geo.lng}
+                onChange={handleInputChange}/>
+            </div>
+          </div>
+          <h3>Compañia</h3>
+          <div className="row pb-3">
+            <div className="col-md-5 mr-5">
+              <label>Nombre de la compañia</label>
+              <input 
+                placeholder="Ingrese nombre de la compañia"
+                className="form-control"
+                type="text"
+                name="company.name"
+                value={datos.company.name}
+                onChange={handleInputChange}/>
+            </div>
+            <div className="col-md-5">
+              <label>Descripción</label>
+              <input 
+                placeholder="Describa un poco la compañia"
+                className="form-control"
+                type="text"
+                name="company.catchPhrase"
+                value={datos.company.catchPhrase}
+                onChange={handleInputChange}/>
+            </div>
+          </div>
+          <div className="row pb-3">
+            <div className="col-md-5 mr-5">
+              <label>Bs</label>
+              <input 
+                placeholder="Ingrese BS"
+                className="form-control"
+                type="text"
+                name="company.bs"
+                value={datos.company.bs}
+                onChange={handleInputChange}/>
+            </div>
+          </div>
+          <div style={{display:"flex",justifyContent:"center"}}>
+            <button className="btn btn-primary mr-5" type="submit">Enviar</button>
+            <button className="btn btn-warning mr-5" type="submit">Modificar</button>
+            <button className="btn btn-danger" type="submit">Eliminar</button>
           </div>
         </form>
         </Paper>
