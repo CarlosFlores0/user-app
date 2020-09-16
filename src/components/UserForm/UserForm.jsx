@@ -1,6 +1,11 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import IconButton from '@material-ui/core/IconButton'
+import { ImUndo2 } from 'react-icons/im'
+import { IconContext } from 'react-icons'
 import Grid from '@material-ui/core/Grid'
+import Link from '@material-ui/core/Link'
+import { Link as LinkRouter } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import { Paper } from '@material-ui/core'
 
@@ -20,7 +25,19 @@ const UserForm = ({data}) => {
 
   return (
     <Grid container>
-      <Grid item>
+      <Grid item
+        className="row">
+        <IconButton color="inherit" aria-label="menu">
+          <Link 
+            component={LinkRouter}  
+            to="/main" 
+            color="inherit" 
+            aria-label="menu">
+            <IconContext.Provider value={{size:'2em'}}>
+              <ImUndo2 />
+            </IconContext.Provider>
+          </Link>
+        </IconButton>
         <Typography 
           style={{marginTop: 20, marginBottom: 20}}
           variant="h4" 
