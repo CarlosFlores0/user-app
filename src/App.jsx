@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/main">
           <MainPage/>
         </Route>
-        <Route path="/user">
+        <Route path="/user/:name">
           <UserPage/>
         </Route>
         <Route>

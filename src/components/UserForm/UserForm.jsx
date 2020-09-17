@@ -5,11 +5,13 @@ import { ImUndo2 } from 'react-icons/im'
 import { IconContext } from 'react-icons'
 import Grid from '@material-ui/core/Grid'
 import Link from '@material-ui/core/Link'
-import { Link as LinkRouter } from 'react-router-dom'
+import { Link as LinkRouter, useParams } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import { Paper } from '@material-ui/core'
 
 const UserForm = ({data}) => {
+  let location = useParams();
+  console.log(location)
 
   const [datos, setDatos] = useState(data)
   const handleInputChange = (event) => {

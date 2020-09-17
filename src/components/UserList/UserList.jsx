@@ -10,18 +10,18 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { Grid } from '@material-ui/core';
 
-const users = [
-  { id: 0, name: "Carlos Flores", email: "carlosfc.dev@gmail.com", address: { city: "Monterrey"}, phone: "52-8121757767", website: "carlosflores.com", company: {name:"Company"}},
-  { id: 1, name: "Jose Lopez", email: "Lopez.dev@gmail.com", address: { city: "Ciudad de México"}, phone: "52-8184220121", website: "jose-lopez.com", company: {name:"Company 2"}},
-  { id: 2, name: "Jorge Garza", email: "Jorge.pollo@gmail.com", address: { city: "Guadalajara"}, phone: "52-8150339204", website: "jorge-pollo.com", company: {name:"Company 3"}},
-  { id: 3, name: "Edith Garza", email: "EdyGarza@gmail.com", address: { city: "Monterrey"}, phone: "52-8199402931", website: "edy-garza.com", company: {name:"Company 4"}},  
-  { id: 4, name: "Carlos Flores", email: "carlosfc.dev@gmail.com", address: { city: "Monterrey"}, phone: "52-8121757767", website: "carlosflores.com", company: {name:"Company"}},
-  { id: 5, name: "Jose Lopez", email: "Lopez.dev@gmail.com", address: { city: "Ciudad de México"}, phone: "52-8184220121", website: "jose-lopez.com", company: {name:"Company 2"}},
-  { id: 6, name: "Jorge Garza", email: "Jorge.pollo@gmail.com", address: { city: "Guadalajara"}, phone: "52-8150339204", website: "jorge-pollo.com", company: {name:"Company 3"}},
-  { id: 8, name: "Edith Garza", email: "EdyGarza@gmail.com", address: { city: "Monterrey"}, phone: "52-8199402931", website: "edy-garza.com", company: {name:"Company 4"}},  
-  { id: 9, name: "Jose Lopez", email: "Lopez.dev@gmail.com", address: { city: "Ciudad de México"}, phone: "52-8184220121", website: "jose-lopez.com", company: {name:"Company 2"}},
-  { id: 10, name: "Jorge Garza", email: "Jorge.pollo@gmail.com", address: { city: "Guadalajara"}, phone: "52-8150339204", website: "jorge-pollo.com", company: {name:"Company 3"}},
-]
+// const users = [
+//   { id: 0, name: "Carlos Flores", email: "carlosfc.dev@gmail.com", address: { city: "Monterrey"}, phone: "52-8121757767", website: "carlosflores.com", company: {name:"Company"}},
+//   { id: 1, name: "Jose Lopez", email: "Lopez.dev@gmail.com", address: { city: "Ciudad de México"}, phone: "52-8184220121", website: "jose-lopez.com", company: {name:"Company 2"}},
+//   { id: 2, name: "Jorge Garza", email: "Jorge.pollo@gmail.com", address: { city: "Guadalajara"}, phone: "52-8150339204", website: "jorge-pollo.com", company: {name:"Company 3"}},
+//   { id: 3, name: "Edith Garza", email: "EdyGarza@gmail.com", address: { city: "Monterrey"}, phone: "52-8199402931", website: "edy-garza.com", company: {name:"Company 4"}},  
+//   { id: 4, name: "Carlos Flores", email: "carlosfc.dev@gmail.com", address: { city: "Monterrey"}, phone: "52-8121757767", website: "carlosflores.com", company: {name:"Company"}},
+//   { id: 5, name: "Jose Lopez", email: "Lopez.dev@gmail.com", address: { city: "Ciudad de México"}, phone: "52-8184220121", website: "jose-lopez.com", company: {name:"Company 2"}},
+//   { id: 6, name: "Jorge Garza", email: "Jorge.pollo@gmail.com", address: { city: "Guadalajara"}, phone: "52-8150339204", website: "jorge-pollo.com", company: {name:"Company 3"}},
+//   { id: 8, name: "Edith Garza", email: "EdyGarza@gmail.com", address: { city: "Monterrey"}, phone: "52-8199402931", website: "edy-garza.com", company: {name:"Company 4"}},  
+//   { id: 9, name: "Jose Lopez", email: "Lopez.dev@gmail.com", address: { city: "Ciudad de México"}, phone: "52-8184220121", website: "jose-lopez.com", company: {name:"Company 2"}},
+//   { id: 10, name: "Jorge Garza", email: "Jorge.pollo@gmail.com", address: { city: "Guadalajara"}, phone: "52-8150339204", website: "jorge-pollo.com", company: {name:"Company 3"}},
+// ]
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -49,7 +49,13 @@ const renderUser = eventOnClickUser => user => {
   // const classes = useStyles();
 
   return (
-    <TableRow className="cell-table" hover role="checkbox" key={id} onClick={eventOnClickUser}>
+    <TableRow className="cell-table" 
+      hover 
+      role="checkbox" 
+      key={id} 
+      onClick={() => {
+        return eventOnClickUser(name)
+      }}>
       <StyledTableCell component="th" scope="row">
         {id}
       </StyledTableCell>
@@ -66,9 +72,10 @@ const renderUser = eventOnClickUser => user => {
 const UserList = () => {
   const classes = useStyles();
   const history = useHistory()
-  const onClickHandler = () => {
+  const onClickHandler = (name) => {
     // history.push permite alterar la URL por programación
-    history.push("/user")
+    console.log(name)
+    history.push(`/user/${name}`)
   }
 
   const [allUser, setAllUser] = useState({users:[]})
@@ -99,7 +106,7 @@ const UserList = () => {
     <Grid container
       justify="center">
       {
-        users ?
+        allUser ?
         <TableContainer 
         className={classes.table} 
         component={Paper}
