@@ -54,7 +54,7 @@ const renderUser = eventOnClickUser => user => {
       role="checkbox" 
       key={id} 
       onClick={() => {
-        return eventOnClickUser(name)
+        return eventOnClickUser(user)
       }}>
       <StyledTableCell component="th" scope="row">
         {id}
@@ -72,10 +72,9 @@ const renderUser = eventOnClickUser => user => {
 const UserList = () => {
   const classes = useStyles();
   const history = useHistory()
-  const onClickHandler = (name) => {
+  const onClickHandler = (user) => {
     // history.push permite alterar la URL por programación
-    console.log(name)
-    history.push(`/user/${name}`)
+    history.push(`/user/${user.id}/${user.name}/${user.username}/${user.email}/${user.phone}/${user.website}/${user.address.street}/${user.address.suite}/${user.address.city}/${user.address.zipcode}/${user.address.geo.lat}/${user.address.geo.lng}/${user.company.name}/${user.company.catchPhrase}/${user.company.bs}/`)
   }
 
   const [allUser, setAllUser] = useState({users:[]})

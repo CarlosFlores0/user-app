@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/main">
           <MainPage/>
         </Route>
-        <Route path="/user/:name">
+        <Route path="/user/:id/:name/:username/:email/:phone/:website/:addressStreet/:addressSuite/:addressCity/:addressZipcode/:addressGeoLat/:addressGeoLng/:companyName/:companyCatchPhrase/:companyBs">
           <UserPage/>
         </Route>
         <Route>

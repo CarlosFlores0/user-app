@@ -9,11 +9,12 @@ import { Link as LinkRouter, useParams } from 'react-router-dom'
 import Typography from '@material-ui/core/Typography'
 import { Paper } from '@material-ui/core'
 
-const UserForm = ({data}) => {
+const UserForm = () => {
   let location = useParams();
-  console.log(location)
+  
+  const {id, name, username, phone, email, website, addressCity, addressSuite, addressStreet, addressGeoLat, addressGeoLng, addressZipcode, companyName, companyCatchPhrase, companyBs} = location
 
-  const [datos, setDatos] = useState(data)
+  const [datos, setDatos] = useState({id, name, username, phone, email, website, addressCity, addressSuite, addressStreet, addressGeoLat, addressGeoLng, addressZipcode, companyName, companyCatchPhrase, companyBs})
   const handleInputChange = (event) => {
     setDatos({
       ...datos,
@@ -23,6 +24,7 @@ const UserForm = ({data}) => {
   
   const enviarDatos = (event) => {
     event.preventDefault();
+    console.log(datos)
   }
 
   return (
@@ -109,7 +111,7 @@ const UserForm = ({data}) => {
                 className="form-control"
                 type="text"
                 name="website"
-                value={datos.website}
+                value={website}
                 onChange={handleInputChange}/>
             </div>
           </div>
@@ -121,8 +123,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese Ciudad"
                 className="form-control"
                 type="text"
-                name="address.city"
-                value={datos.address.city}
+                name="addressCity"
+                value={datos.addressCity}
                 onChange={handleInputChange}/>
             </div>
             <div className="col-md-5">
@@ -131,8 +133,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese suite"
                 className="form-control"
                 type="text"
-                name="address.suite"
-                value={datos.address.suite}
+                name="addressSuite"
+                value={datos.addressSuite}
                 onChange={handleInputChange}/>
             </div>
           </div>
@@ -143,8 +145,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese calle"
                 className="form-control"
                 type="text"
-                name="address.street"
-                value={datos.address.street}
+                name="addressStreet"
+                value={datos.addressStreet}
                 onChange={handleInputChange}/>
             </div>
             <div className="col-md-5">
@@ -153,8 +155,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese zipcode"
                 className="form-control"
                 type="text"
-                name="address.zipcode"
-                value={datos.address.zipcode}
+                name="addressZipcode"
+                value={datos.addressZipcode}
                 onChange={handleInputChange}/>
             </div>
           </div>
@@ -166,8 +168,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese latitud"
                 className="form-control"
                 type="text"
-                name="address.geo.lat"
-                value={datos.address.geo.lat}
+                name="addressGeoLat"
+                value={datos.addressGeoLat}
                 onChange={handleInputChange}/>
             </div>
             <div className="col-md-5">
@@ -176,8 +178,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese longitud"
                 className="form-control"
                 type="text"
-                name="address.geo.lng"
-                value={datos.address.geo.lng}
+                name="addressGeoLng"
+                value={datos.addressGeoLng}
                 onChange={handleInputChange}/>
             </div>
           </div>
@@ -189,8 +191,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese nombre de la compañia"
                 className="form-control"
                 type="text"
-                name="company.name"
-                value={datos.company.name}
+                name="companyName"
+                value={datos.companyName}
                 onChange={handleInputChange}/>
             </div>
             <div className="col-md-5">
@@ -199,8 +201,8 @@ const UserForm = ({data}) => {
                 placeholder="Describa un poco la compañia"
                 className="form-control"
                 type="text"
-                name="company.catchPhrase"
-                value={datos.company.catchPhrase}
+                name="companyCatchPhrase"
+                value={datos.companyCatchPhrase}
                 onChange={handleInputChange}/>
             </div>
           </div>
@@ -211,8 +213,8 @@ const UserForm = ({data}) => {
                 placeholder="Ingrese BS"
                 className="form-control"
                 type="text"
-                name="company.bs"
-                value={datos.company.bs}
+                name="companyBs"
+                value={datos.companyBs}
                 onChange={handleInputChange}/>
             </div>
           </div>
