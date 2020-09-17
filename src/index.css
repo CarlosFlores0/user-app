@@ -26,3 +26,7 @@ code {
 .cell-table {
   cursor: pointer;
 }
+
+.text-invalid {
+  color: crimson;
+}

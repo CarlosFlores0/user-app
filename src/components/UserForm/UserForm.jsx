@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { Formik, Field, ErrorMessage } from 'formik'
 import IconButton from '@material-ui/core/IconButton'
 import { ImUndo2 } from 'react-icons/im'
 import { IconContext } from 'react-icons'
@@ -14,18 +15,8 @@ const UserForm = () => {
   
   const {id, name, username, phone, email, website, addressCity, addressSuite, addressStreet, addressGeoLat, addressGeoLng, addressZipcode, companyName, companyCatchPhrase, companyBs} = location
 
-  const [datos, setDatos] = useState({id, name, username, phone, email, website, addressCity, addressSuite, addressStreet, addressGeoLat, addressGeoLng, addressZipcode, companyName, companyCatchPhrase, companyBs})
-  const handleInputChange = (event) => {
-    setDatos({
-      ...datos,
-      [event.target.name] : event.target.value
-    })
-  }
-  
-  const enviarDatos = (event) => {
-    event.preventDefault();
-    console.log(datos)
-  }
+  const datos = {id, name, username, phone, email, website, addressCity, addressSuite, addressStreet, addressGeoLat, addressGeoLng, addressZipcode, companyName, companyCatchPhrase, companyBs}
+  const [nameUser, setNameUser] = useState(datos.name)
 
   return (
     <Grid container>
@@ -48,7 +39,7 @@ const UserForm = () => {
           color="inherit">
           {
             datos.name ?
-            <>Datos del usuario: {datos.name}</>
+            <>Datos del usuario: {nameUser}</>
             :
             <>Ingrese datos del usuario</>
           }
@@ -57,174 +48,170 @@ const UserForm = () => {
       <Grid item container
         justify="center">
         <Paper elevation={3} style={{width:"70%",padding:30}}>
-        <form onSubmit={enviarDatos}>
-          <h3>Datos generales</h3>
-          <div className="row pb-3">
-            <div className="col-md-5 mr-5">
-              <label>Nombre</label>
-              <input 
-                placeholder="Ingrese Nombre"
-                className="form-control"
-                type="text"
-                name="name"
-                value={datos.name}
-                onChange={handleInputChange}/>
-            </div>
-            <div className="col-md-5">
-              <label>Username</label>
-              <input 
-                placeholder="Ingrese username"
-                className="form-control"
-                type="text"
-                name="username"
-                value={datos.username}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <div className="row pb-3">
-            <div className="col-md-5 mr-5">
-              <label>Email</label>
-              <input 
-                placeholder="Ingrese email"
-                className="form-control"
-                type="text"
-                name="email"
-                value={datos.email}
-                onChange={handleInputChange}/>
-            </div>
-            <div className="col-md-5">
-              <label>Telefono</label>
-              <input 
-                placeholder="Ingrese numero de telefono"
-                className="form-control"
-                type="text"
-                name="phone"
-                value={datos.phone}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <div className="row pb-3">
-            <div className="col-md-5 mr-5">
-              <label>Sitio web</label>
-              <input 
-                placeholder="Ingrese su website"
-                className="form-control"
-                type="text"
-                name="website"
-                value={website}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <h3>Dirección</h3>
-          <div className="row pb-3">
-            <div className="col-md-5 mr-5">
-              <label>Ciudad</label>
-              <input 
-                placeholder="Ingrese Ciudad"
-                className="form-control"
-                type="text"
-                name="addressCity"
-                value={datos.addressCity}
-                onChange={handleInputChange}/>
-            </div>
-            <div className="col-md-5">
-              <label>Suite</label>
-              <input 
-                placeholder="Ingrese suite"
-                className="form-control"
-                type="text"
-                name="addressSuite"
-                value={datos.addressSuite}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <div className="row pb-3">
-            <div className="col-md-5 mr-5">
-              <label>Calle</label>
-              <input 
-                placeholder="Ingrese calle"
-                className="form-control"
-                type="text"
-                name="addressStreet"
-                value={datos.addressStreet}
-                onChange={handleInputChange}/>
-            </div>
-            <div className="col-md-5">
-              <label>Zipcode</label>
-              <input 
-                placeholder="Ingrese zipcode"
-                className="form-control"
-                type="text"
-                name="addressZipcode"
-                value={datos.addressZipcode}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <div className="col pb-3">
-            <h4>Geolocalización</h4>
-            <div className="col-md-5 pb-3">
-              <label>Latitud</label>
-              <input 
-                placeholder="Ingrese latitud"
-                className="form-control"
-                type="text"
-                name="addressGeoLat"
-                value={datos.addressGeoLat}
-                onChange={handleInputChange}/>
-            </div>
-            <div className="col-md-5">
-              <label>Longitud</label>
-              <input 
-                placeholder="Ingrese longitud"
-                className="form-control"
-                type="text"
-                name="addressGeoLng"
-                value={datos.addressGeoLng}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <h3>Compañia</h3>
-          <div className="row pb-3">
-            <div className="col-md-5 mr-5">
-              <label>Nombre de la compañia</label>
-              <input 
-                placeholder="Ingrese nombre de la compañia"
-                className="form-control"
-                type="text"
-                name="companyName"
-                value={datos.companyName}
-                onChange={handleInputChange}/>
-            </div>
-            <div className="col-md-5">
-              <label>Descripción</label>
-              <input 
-                placeholder="Describa un poco la compañia"
-                className="form-control"
-                type="text"
-                name="companyCatchPhrase"
-                value={datos.companyCatchPhrase}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <div className="row pb-3">
-            <div className="col-md-5 mr-5">
-              <label>Bs</label>
-              <input 
-                placeholder="Ingrese BS"
-                className="form-control"
-                type="text"
-                name="companyBs"
-                value={datos.companyBs}
-                onChange={handleInputChange}/>
-            </div>
-          </div>
-          <div style={{display:"flex",justifyContent:"center"}}>
-            <button className="btn btn-primary mr-5" type="submit">Enviar</button>
-            <button className="btn btn-warning mr-5" type="submit">Modificar</button>
-            <button className="btn btn-danger" type="submit">Eliminar</button>
-          </div>
-        </form>
+          <Formik
+            initialValues={datos}
+            validate={values => {
+              const errors = {};
+              if (!values.name) {
+                errors.name = 'El nombre es requerido';
+              }
+              if (!values.username) {
+                errors.username = 'El username es requerido';
+              }
+              if (!values.email) {
+                errors.email = 'La dirección email es requerida';
+              } else if (
+                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+              ) {
+                errors.email = 'La dirección email es invalido';
+              }
+              if (!values.phone) {
+                errors.phone = 'Un numero de telefono es requerido';
+              }
+              if (!values.website) {
+                errors.website = 'La dirección web es requerido';
+              }
+              if (!values.addressCity) {
+                errors.addressCity = 'La ciudad es requerido';
+              }
+              if (!values.addressSuite) {
+                errors.addressSuite = 'La suite es requerida';
+              }
+              if (!values.addressStreet) {
+                errors.addressStreet = 'La calle es requerida';
+              }
+              if (!values.addressZipcode) {
+                errors.addressZipcode = 'El codigo postal es requerido';
+              }
+              if (!values.addressGeoLat) {
+                errors.addressGeoLat = 'La latitud es requerida';
+              }
+              if (!values.addressGeoLng) {
+                errors.addressGeoLng = 'La longitud es requerido';
+              }
+              if (!values.companyName) {
+                errors.companyName = 'El nombre de la compañia es requerido';
+              }
+              if (!values.companyCatchPhrase) {
+                errors.companyCatchPhrase = 'Una descripción es requerida';
+              }
+              if (!values.companyBs) {
+                errors.companyBs = 'El BS es requerido';
+              }
+              return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              setTimeout(() => {
+                setNameUser(values.name)
+                console.log(values)
+                setSubmitting(false);
+              }, 400);
+            }}>
+            {({
+              handleSubmit,
+              isSubmitting,
+            }) => (
+            <form onSubmit={handleSubmit}>
+              <h3>Datos generales</h3>
+              <div className="row pb-3">
+                <div className="col-md-5 mr-5">
+                  <label>Nombre</label>
+                  <Field type="name" name="name" className="form-control"/>
+                  <ErrorMessage name="name" className="text-invalid" component="div" />
+                </div>
+                <div className="col-md-5">
+                  <label>Username</label>
+                  <Field type="text" name="username" className="form-control"/>
+                  <ErrorMessage name="username" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <div className="row pb-3">
+                <div className="col-md-5 mr-5">
+                  <label>Email</label>
+                  <Field type="email" name="email" className="form-control"/>
+                  <ErrorMessage name="email" className="text-invalid" component="div" />
+                </div>
+                <div className="col-md-5">
+                  <label>Telefono</label>
+                  <Field type="text" name="phone" className="form-control"/>
+                  <ErrorMessage name="phone" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <div className="row pb-3">
+                <div className="col-md-5 mr-5">
+                  <label>Sitio web</label>
+                  <Field type="text" name="website" className="form-control"/>
+                  <ErrorMessage name="website" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <h3>Dirección</h3>
+              <div className="row pb-3">
+                <div className="col-md-5 mr-5">
+                  <label>Ciudad</label>
+                  <Field type="text" name="addressCity" className="form-control"/>
+                  <ErrorMessage name="addressCity" className="text-invalid" component="div" />
+                </div>
+                <div className="col-md-5">
+                  <label>Suite</label>
+                  <Field type="text" name="addressSuite" className="form-control"/>
+                  <ErrorMessage name="addressSuite" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <div className="row pb-3">
+                <div className="col-md-5 mr-5">
+                  <label>Calle</label>
+                  <Field type="text" name="addressStreet" className="form-control"/>
+                  <ErrorMessage name="addressStreet" className="text-invalid" component="div" />
+                </div>
+                <div className="col-md-5">
+                  <label>Zipcode</label>
+                  <Field type="text" name="addressZipcode" className="form-control"/>
+                  <ErrorMessage name="addressZipcode" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <div className="col pb-3">
+                <h4>Geolocalización</h4>
+                <div className="col-md-5 pb-3">
+                  <label>Latitud</label>
+                  <Field type="number" name="addressGeoLat" className="form-control"/>
+                  <ErrorMessage name="addressGeoLat" className="text-invalid" component="div" />
+                </div>
+                <div className="col-md-5">
+                  <label>Longitud</label>
+                  <Field type="number" name="addressGeoLng" className="form-control"/>
+                  <ErrorMessage name="addressGeoLng" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <h3>Compañia</h3>
+              <div className="row pb-3">
+                <div className="col-md-5 mr-5">
+                  <label>Nombre de la compañia</label>
+                  <Field type="text" name="companyName" className="form-control"/>
+                  <ErrorMessage name="companyName" className="text-invalid" component="div" />
+                </div>
+                <div className="col-md-5">
+                  <label>Descripción</label>
+                  <Field type="text" name="companyCatchPhrase" className="form-control"/>
+                  <ErrorMessage name="companyCatchPhrase" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <div className="row pb-3">
+                <div className="col-md-5 mr-5">
+                  <label>Bs</label>
+                  <Field type="text" name="companyBs" className="form-control"/>
+                  <ErrorMessage name="companyBs" className="text-invalid" component="div" />
+                </div>
+              </div>
+              <div style={{display:"flex",justifyContent:"center"}}>
+                <button className="btn btn-primary mr-5" type="submit" disabled={isSubmitting}>Enviar</button>
+                <button className="btn btn-warning mr-5" type="submit" disabled={isSubmitting}>Modificar</button>
+                <button className="btn btn-danger" type="submit" disabled={isSubmitting}>Eliminar</button>
+              </div>
+            </form>
+            )}
+          </Formik>
         </Paper>
+
       </Grid>
     </Grid>
   )
